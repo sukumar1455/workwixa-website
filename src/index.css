@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+/* Class-based only — do not follow OS dark mode after the user toggles */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply font-sans text-gray-700 dark:text-gray-300 antialiased bg-white dark:bg-gray-950;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-950 dark:bg-brand-800 dark:text-brand-50;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build: ./server
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/workwixa
+      PORT: 3001
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
